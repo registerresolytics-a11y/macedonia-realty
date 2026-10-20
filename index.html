@@ -1,0 +1,1361 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Macedonia Realty | Luxury Serviced Residences & Penthouses</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-primary: #0a0c10;
+      --bg-surface: #12161f;
+      --bg-surface-elevated: #1a202c;
+      --text-main: #f8fafc;
+      --text-muted: #94a3b8;
+      --gold-primary: #d4af37;
+      --gold-light: #f3e5ab;
+      --gold-glow: rgba(212, 175, 55, 0.25);
+      --border-subtle: rgba(212, 175, 55, 0.15);
+      --border-card: rgba(255, 255, 255, 0.08);
+      --font-serif: 'Cormorant Garamond', Georgia, serif;
+      --font-sans: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+      --font-mono: 'Space Mono', monospace;
+      --transition-smooth: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      --radius-sm: 6px;
+      --radius-md: 12px;
+      --radius-lg: 20px;
+    }
+
+    /* WIREFRAME MODE STYLES */
+    body.wireframe-mode {
+      --bg-primary: #0d1117;
+      --bg-surface: #161b22;
+      --bg-surface-elevated: #21262d;
+      --text-main: #e6edf3;
+      --text-muted: #8b949e;
+      --gold-primary: #58a6ff;
+      --gold-light: #79c0ff;
+      --gold-glow: rgba(88, 166, 255, 0.2);
+      --border-subtle: #30363d;
+      --border-card: #30363d;
+      font-family: var(--font-mono) !important;
+    }
+
+    body.wireframe-mode * {
+      border-radius: 0 !important;
+    }
+
+    body.wireframe-mode .wireframe-annotation {
+      display: inline-block !important;
+    }
+
+    body.wireframe-mode .residence-img {
+      filter: grayscale(100%) contrast(120%) opacity(0.7);
+    }
+
+    .wireframe-annotation {
+      display: none;
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      background: rgba(88, 166, 255, 0.15);
+      color: #79c0ff;
+      border: 1px dashed #58a6ff;
+      padding: 2px 8px;
+      margin-bottom: 6px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-color: var(--bg-primary);
+      color: var(--text-main);
+      font-family: var(--font-sans);
+      line-height: 1.6;
+      overflow-x: hidden;
+      transition: background-color 0.4s ease, color 0.4s ease;
+    }
+
+    /* FLOATING CONTROL BAR (Mode Switcher + Currency) */
+    .director-bar {
+      position: fixed;
+      top: 16px;
+      right: 16px;
+      z-index: 1000;
+      display: flex;
+      gap: 10px;
+      background: rgba(18, 22, 31, 0.85);
+      backdrop-filter: blur(16px);
+      padding: 6px 10px;
+      border: 1px solid var(--border-subtle);
+      border-radius: 40px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    }
+
+    .director-btn {
+      background: transparent;
+      border: 1px solid transparent;
+      color: var(--text-main);
+      padding: 6px 14px;
+      border-radius: 30px;
+      cursor: pointer;
+      font-size: 0.78rem;
+      font-weight: 600;
+      letter-spacing: 0.03em;
+      transition: var(--transition-smooth);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .director-btn.active, .director-btn:hover {
+      background: var(--gold-primary);
+      color: #000;
+    }
+
+    /* TOP HEADER / NAV */
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 900;
+      background: rgba(10, 12, 16, 0.88);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border-subtle);
+      padding: 18px 48px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .brand-group {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .parent-brand {
+      font-size: 0.68rem;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: var(--gold-primary);
+      font-weight: 700;
+    }
+
+    .realty-brand {
+      font-family: var(--font-serif);
+      font-size: 1.85rem;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      color: #ffffff;
+      line-height: 1.1;
+    }
+
+    .realty-brand span {
+      color: var(--gold-primary);
+      font-style: italic;
+    }
+
+    nav.main-nav {
+      display: flex;
+      gap: 32px;
+      align-items: center;
+    }
+
+    nav.main-nav a {
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 0.9rem;
+      font-weight: 500;
+      transition: var(--transition-smooth);
+      position: relative;
+    }
+
+    nav.main-nav a:hover, nav.main-nav a.active {
+      color: var(--gold-light);
+    }
+
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .btn-gold {
+      background: linear-gradient(135deg, #d4af37 0%, #b89325 100%);
+      color: #0b0d10;
+      font-weight: 600;
+      padding: 10px 22px;
+      border-radius: var(--radius-sm);
+      border: none;
+      cursor: pointer;
+      font-size: 0.85rem;
+      letter-spacing: 0.04em;
+      transition: var(--transition-smooth);
+      box-shadow: 0 4px 15px var(--gold-glow);
+    }
+
+    .btn-gold:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(212, 175, 55, 0.4);
+    }
+
+    .btn-outline {
+      background: transparent;
+      color: var(--gold-primary);
+      border: 1px solid var(--gold-primary);
+      padding: 9px 20px;
+      border-radius: var(--radius-sm);
+      cursor: pointer;
+      font-size: 0.85rem;
+      font-weight: 600;
+      transition: var(--transition-smooth);
+    }
+
+    .btn-outline:hover {
+      background: rgba(212, 175, 55, 0.1);
+      color: #fff;
+    }
+
+    /* HERO SECTION */
+    .hero-section {
+      position: relative;
+      min-height: 85vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 80px 48px;
+      background: radial-gradient(circle at 50% 20%, rgba(212, 175, 55, 0.08) 0%, transparent 60%),
+                  linear-gradient(180deg, rgba(10, 12, 16, 0.4) 0%, rgba(10, 12, 16, 1) 100%),
+                  url('https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=2000&q=80') center/cover no-repeat;
+    }
+
+    .hero-content {
+      max-width: 1050px;
+      text-align: center;
+      position: relative;
+      z-index: 2;
+    }
+
+    .hero-eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: rgba(212, 175, 55, 0.12);
+      border: 1px solid var(--border-subtle);
+      padding: 6px 18px;
+      border-radius: 40px;
+      color: var(--gold-light);
+      font-size: 0.8rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      margin-bottom: 24px;
+    }
+
+    .hero-title {
+      font-family: var(--font-serif);
+      font-size: 4.2rem;
+      line-height: 1.1;
+      font-weight: 400;
+      margin-bottom: 24px;
+      letter-spacing: -0.01em;
+    }
+
+    .hero-title em {
+      font-style: italic;
+      color: var(--gold-light);
+      font-weight: 600;
+    }
+
+    .hero-subtitle {
+      color: var(--text-muted);
+      font-size: 1.15rem;
+      max-width: 680px;
+      margin: 0 auto 48px;
+      font-weight: 300;
+    }
+
+    /* SEARCH / FILTER CONCIERGE DOCK */
+    .search-dock {
+      background: rgba(18, 22, 31, 0.92);
+      backdrop-filter: blur(20px);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-md);
+      padding: 24px 32px;
+      display: grid;
+      grid-template-columns: 2fr 1.5fr 1.5fr 1fr;
+      gap: 20px;
+      align-items: center;
+      box-shadow: 0 20px 50px rgba(0,0,0,0.6);
+      text-align: left;
+    }
+
+    .dock-field {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      border-right: 1px solid rgba(255,255,255,0.08);
+      padding-right: 16px;
+    }
+
+    .dock-field:last-child {
+      border-right: none;
+      padding-right: 0;
+    }
+
+    .dock-label {
+      font-size: 0.72rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--gold-primary);
+      font-weight: 600;
+    }
+
+    .dock-select, .dock-input {
+      background: transparent;
+      border: none;
+      color: #fff;
+      font-size: 0.95rem;
+      font-family: var(--font-sans);
+      outline: none;
+      cursor: pointer;
+    }
+
+    .dock-select option {
+      background: #12161f;
+      color: #fff;
+    }
+
+    /* LOCATION TABS */
+    .location-tabs-bar {
+      padding: 40px 48px 0;
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .loc-tab {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-card);
+      color: var(--text-muted);
+      padding: 10px 22px;
+      border-radius: 40px;
+      font-size: 0.85rem;
+      font-weight: 500;
+      cursor: pointer;
+      transition: var(--transition-smooth);
+    }
+
+    .loc-tab.active, .loc-tab:hover {
+      background: rgba(212, 175, 55, 0.15);
+      border-color: var(--gold-primary);
+      color: var(--gold-light);
+    }
+
+    /* RESIDENCES GRID */
+    .section-container {
+      padding: 60px 48px;
+      max-width: 1440px;
+      margin: 0 auto;
+    }
+
+    .section-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      margin-bottom: 40px;
+    }
+
+    .section-eyebrow {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+      color: var(--gold-primary);
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+
+    .section-title {
+      font-family: var(--font-serif);
+      font-size: 2.5rem;
+      font-weight: 400;
+      color: #fff;
+    }
+
+    .grid-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
+      gap: 32px;
+    }
+
+    /* RESIDENCE CARD */
+    .residence-card {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-card);
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      transition: var(--transition-smooth);
+      position: relative;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .residence-card:hover {
+      transform: translateY(-8px);
+      border-color: var(--gold-primary);
+      box-shadow: 0 20px 40px rgba(0,0,0,0.5), 0 0 20px var(--gold-glow);
+    }
+
+    .card-media {
+      position: relative;
+      height: 260px;
+      overflow: hidden;
+      background: #1a202c;
+    }
+
+    .card-media img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .residence-card:hover .card-media img {
+      transform: scale(1.08);
+    }
+
+    .badge-pill {
+      position: absolute;
+      top: 16px;
+      left: 16px;
+      background: rgba(10, 12, 16, 0.75);
+      backdrop-filter: blur(8px);
+      border: 1px solid var(--border-subtle);
+      color: var(--gold-light);
+      padding: 4px 12px;
+      border-radius: 30px;
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+    }
+
+    .card-location-tag {
+      position: absolute;
+      bottom: 14px;
+      left: 16px;
+      background: rgba(0,0,0,0.65);
+      backdrop-filter: blur(6px);
+      color: #fff;
+      padding: 4px 10px;
+      border-radius: 4px;
+      font-size: 0.75rem;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+
+    .card-body {
+      padding: 24px;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .card-title {
+      font-family: var(--font-serif);
+      font-size: 1.55rem;
+      margin-bottom: 8px;
+      font-weight: 600;
+      color: #ffffff;
+      line-height: 1.2;
+    }
+
+    .card-desc {
+      color: var(--text-muted);
+      font-size: 0.88rem;
+      margin-bottom: 18px;
+      line-height: 1.5;
+    }
+
+    .features-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 20px;
+    }
+
+    .feature-tag {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.06);
+      color: var(--text-muted);
+      font-size: 0.75rem;
+      padding: 3px 9px;
+      border-radius: 4px;
+    }
+
+    .card-footer {
+      margin-top: auto;
+      padding-top: 18px;
+      border-top: 1px solid rgba(255,255,255,0.06);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .price-block {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .price-label {
+      font-size: 0.7rem;
+      color: var(--text-muted);
+      text-transform: uppercase;
+    }
+
+    .price-value {
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: var(--gold-light);
+    }
+
+    .price-value small {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      font-weight: 400;
+    }
+
+    /* BESPOKE CONCIERGE & WHITE GLOVE AMENITIES */
+    .amenities-section {
+      background: var(--bg-surface);
+      border-top: 1px solid var(--border-subtle);
+      border-bottom: 1px solid var(--border-subtle);
+      padding: 80px 48px;
+    }
+
+    .amenities-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 28px;
+      margin-top: 40px;
+    }
+
+    .amenity-card {
+      background: var(--bg-primary);
+      border: 1px solid var(--border-card);
+      padding: 32px 24px;
+      border-radius: var(--radius-md);
+      transition: var(--transition-smooth);
+    }
+
+    .amenity-card:hover {
+      border-color: var(--gold-primary);
+      transform: translateY(-4px);
+    }
+
+    .amenity-icon {
+      width: 48px;
+      height: 48px;
+      border-radius: 12px;
+      background: rgba(212, 175, 55, 0.12);
+      border: 1px solid var(--border-subtle);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--gold-primary);
+      font-size: 1.4rem;
+      margin-bottom: 20px;
+    }
+
+    .amenity-title {
+      font-size: 1.15rem;
+      font-weight: 600;
+      margin-bottom: 10px;
+      color: #fff;
+    }
+
+    .amenity-desc {
+      color: var(--text-muted);
+      font-size: 0.85rem;
+      line-height: 1.6;
+    }
+
+    /* INTERACTIVE DETAIL / BOOKING MODAL */
+    .modal-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: rgba(5, 7, 10, 0.85);
+      backdrop-filter: blur(12px);
+      z-index: 2000;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+    }
+
+    .modal-overlay.active {
+      display: flex;
+    }
+
+    .modal-dossier {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-lg);
+      width: 100%;
+      max-width: 980px;
+      max-height: 90vh;
+      overflow-y: auto;
+      box-shadow: 0 25px 60px rgba(0,0,0,0.8);
+      position: relative;
+    }
+
+    .modal-header-img {
+      height: 340px;
+      width: 100%;
+      object-fit: cover;
+      position: relative;
+    }
+
+    .modal-close-btn {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      background: rgba(0,0,0,0.7);
+      border: 1px solid rgba(255,255,255,0.2);
+      color: #fff;
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      font-size: 1.2rem;
+      z-index: 10;
+      transition: var(--transition-smooth);
+    }
+
+    .modal-close-btn:hover {
+      background: var(--gold-primary);
+      color: #000;
+    }
+
+    .modal-content {
+      padding: 36px 48px;
+    }
+
+    .modal-title-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 24px;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+      padding-bottom: 20px;
+    }
+
+    .modal-res-title {
+      font-family: var(--font-serif);
+      font-size: 2.2rem;
+      color: #fff;
+      margin-bottom: 6px;
+    }
+
+    .modal-grid-2col {
+      display: grid;
+      grid-template-columns: 1.4fr 1fr;
+      gap: 36px;
+    }
+
+    .booking-calculator-box {
+      background: var(--bg-surface-elevated);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-md);
+      padding: 24px;
+    }
+
+    .calc-row {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 12px;
+      font-size: 0.88rem;
+      color: var(--text-muted);
+    }
+
+    .calc-row.total {
+      border-top: 1px solid rgba(255,255,255,0.1);
+      padding-top: 14px;
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--gold-light);
+    }
+
+    /* FOOTER */
+    footer {
+      background: #06080a;
+      border-top: 1px solid var(--border-subtle);
+      padding: 60px 48px 30px;
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 40px;
+      margin-bottom: 48px;
+    }
+
+    .footer-brand-bio {
+      color: var(--text-muted);
+      font-size: 0.88rem;
+      max-width: 360px;
+      margin-top: 14px;
+      line-height: 1.6;
+    }
+
+    .footer-heading {
+      color: #fff;
+      font-size: 0.95rem;
+      font-weight: 600;
+      margin-bottom: 18px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    .footer-links {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .footer-links a {
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 0.85rem;
+      transition: var(--transition-smooth);
+    }
+
+    .footer-links a:hover {
+      color: var(--gold-light);
+    }
+
+    .footer-bottom {
+      border-top: 1px solid rgba(255,255,255,0.06);
+      padding-top: 24px;
+      display: flex;
+      justify-content: space-between;
+      color: var(--text-muted);
+      font-size: 0.78rem;
+    }
+
+    /* RESPONSIVE */
+    @media (max-width: 1024px) {
+      .hero-title { font-size: 3rem; }
+      .search-dock { grid-template-columns: 1fr 1fr; }
+      .modal-grid-2col { grid-template-columns: 1fr; }
+      .footer-grid { grid-template-columns: 1fr 1fr; }
+    }
+
+    @media (max-width: 768px) {
+      header { padding: 16px 20px; }
+      nav.main-nav { display: none; }
+      .hero-title { font-size: 2.3rem; }
+      .search-dock { grid-template-columns: 1fr; }
+      .section-container { padding: 40px 20px; }
+      .footer-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- DIRECTOR CONTROLS (Mode Toggle & Live Currency Converter) -->
+  <aside class="director-bar" aria-label="Review Controls">
+    <button class="director-btn active" id="btnModeLuxury" onclick="setMode('luxury')">✨ Luxury Hi-Fi</button>
+    <button class="director-btn" id="btnModeWireframe" onclick="setMode('wireframe')">📐 Wireframe Mode</button>
+    <div style="width: 1px; height: 20px; background: rgba(255,255,255,0.15); margin: auto 2px;"></div>
+    <button class="director-btn" id="currNGN" onclick="setCurrency('NGN')">₦ NGN</button>
+    <button class="director-btn" id="currUSD" onclick="setCurrency('USD')">$ USD</button>
+    <button class="director-btn" id="currGBP" onclick="setCurrency('GBP')">£ GBP</button>
+  </aside>
+
+  <!-- HEADER -->
+  <header>
+    <div class="brand-group">
+      <span class="parent-brand">Macedonia Group</span>
+      <h1 class="realty-brand">MACEDONIA <span>REALTY</span></h1>
+    </div>
+
+    <nav class="main-nav">
+      <a href="#curated" class="active">Curated Stays</a>
+      <a href="#destinations">Locations</a>
+      <a href="#services">White Glove Services</a>
+      <a href="#private-client">Private Client</a>
+      <a href="#group">About Macedonia Group</a>
+    </nav>
+
+    <div class="nav-actions">
+      <button class="btn-outline" onclick="openContactModal('Private Viewing')">Private Viewing</button>
+      <button class="btn-gold" onclick="openContactModal('Concierge Desk')">VIP Concierge</button>
+    </div>
+  </header>
+
+  <!-- HERO SECTION -->
+  <section class="hero-section">
+    <div class="hero-content">
+      <div class="wireframe-annotation">[HERO COMPONENT] Dynamic Video / Cinematic Carousel + Intent Engine</div>
+      <div class="hero-eyebrow">
+        <span>●</span> Ultra-Luxury Serviced Residences
+      </div>
+      <h2 class="hero-title">
+        The Art of <em>Unrivaled</em> Sanctuary.
+      </h2>
+      <p class="hero-subtitle">
+        Impeccably appointed serviced apartments, private penthouses, and executive estates across Lagos Island & Mainland, Abuja, Port Harcourt, and prime global cities.
+      </p>
+
+      <!-- SEARCH & CONCIERGE DOCK -->
+      <div class="search-dock">
+        <div class="dock-field">
+          <span class="dock-label">Destination</span>
+          <select class="dock-select" id="dockDestination" onchange="filterProperties()">
+            <option value="all">All Prestigious Enclaves</option>
+            <option value="lagos-island">Lagos: Ikoyi & Victoria Island</option>
+            <option value="lagos-mainland">Lagos: Ikeja GRA</option>
+            <option value="abuja">Abuja: Maitama & Asokoro</option>
+            <option value="portharcourt">Port Harcourt: Old GRA</option>
+            <option value="global">Global: London & Dubai</option>
+          </select>
+        </div>
+
+        <div class="dock-field">
+          <span class="dock-label">Duration & Dates</span>
+          <input type="text" class="dock-input" value="Oct 25 — Nov 05, 2026" readonly onclick="alert('Interactive Date Range Calendar Picker triggered.')">
+        </div>
+
+        <div class="dock-field">
+          <span class="dock-label">Guests & Configuration</span>
+          <select class="dock-select">
+            <option>1–2 Guests (1 Bed Suite)</option>
+            <option>2–4 Guests (2 Bed Executive)</option>
+            <option selected>4–6 Guests (3–4 Bed Penthouse)</option>
+            <option>Diplomatic Delegation (Estate)</option>
+          </select>
+        </div>
+
+        <button class="btn-gold" style="width: 100%; height: 100%;" onclick="filterProperties()">Search Stays</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- DESTINATIONS FILTER PILLS -->
+  <div class="location-tabs-bar" id="destinations">
+    <div class="wireframe-annotation" style="width: 100%; text-align: center;">[FILTER ENGINE] Asynchronous Tab Selection & Instant Inventory Filtering</div>
+    <button class="loc-tab active" onclick="setLocTab('all', this)">All Enclaves</button>
+    <button class="loc-tab" onclick="setLocTab('lagos-island', this)">Ikoyi & Banana Island</button>
+    <button class="loc-tab" onclick="setLocTab('lagos-island', this)">Victoria Island & Eko Atlantic</button>
+    <button class="loc-tab" onclick="setLocTab('lagos-mainland', this)">Ikeja GRA (Mainland Haven)</button>
+    <button class="loc-tab" onclick="setLocTab('abuja', this)">Maitama & Asokoro (Abuja)</button>
+    <button class="loc-tab" onclick="setLocTab('portharcourt', this)">Port Harcourt (Old GRA)</button>
+    <button class="loc-tab" onclick="setLocTab('global', this)">London & Dubai Residences</button>
+  </div>
+
+  <!-- CURATED RESIDENCES SECTION -->
+  <section class="section-container" id="curated">
+    <div class="section-header">
+      <div>
+        <div class="wireframe-annotation">[GRID MODULE] Dynamic Cards with Currency Conversion & Dossier Trigger</div>
+        <p class="section-eyebrow">Signature Portfolio</p>
+        <h3 class="section-title">Handcrafted Luxury Stays</h3>
+      </div>
+      <div style="color: var(--text-muted); font-size: 0.9rem;">
+        Showing <span id="residenceCount" style="color: var(--gold-light); font-weight: 700;">6</span> Vetted Residences
+      </div>
+    </div>
+
+    <div class="grid-container" id="residenceGrid">
+      <!-- Cards dynamically generated via JS for interactive state -->
+    </div>
+  </section>
+
+  <!-- BESPOKE SERVICES -->
+  <section class="amenities-section" id="services">
+    <div class="section-container" style="padding: 0;">
+      <div class="wireframe-annotation">[VALUE PROP] White-Glove Hospitality Matrix for High-Net-Worth & Corporate Clients</div>
+      <p class="section-eyebrow">The Macedonia Standard</p>
+      <h3 class="section-title">Beyond Accommodation: An Effortless Ecosystem</h3>
+      
+      <div class="amenities-grid">
+        <div class="amenity-card">
+          <div class="amenity-icon">⚡</div>
+          <h4 class="amenity-title">Guaranteed Unbroken Power</h4>
+          <p class="amenity-desc">Triple-redundancy clean solar microgrids, ultra-quiet backup generators, and industrial voltage regulation ensuring 100% 24/7 uptime.</p>
+        </div>
+
+        <div class="amenity-card">
+          <div class="amenity-icon">🛡️</div>
+          <h4 class="amenity-title">Diplomatic Security</h4>
+          <p class="amenity-desc">Biometric private access, 24/7 monitored perimeter sweeps, armed tactical escorts upon request, and vetted private security personnel.</p>
+        </div>
+
+        <div class="amenity-card">
+          <div class="amenity-icon">👨‍🍳</div>
+          <h4 class="amenity-title">Private Chef & Butler</h4>
+          <p class="amenity-desc">Dedicated culinary masters tailored to dietary preferences, daily gourmet breakfast service, and sommelier-curated cellars.</p>
+        </div>
+
+        <div class="amenity-card">
+          <div class="amenity-icon">🚘</div>
+          <h4 class="amenity-title">Executive Chauffeur Fleet</h4>
+          <p class="amenity-desc">Armored and luxury vehicle transfers (Range Rover, Mercedes S-Class, Lexus LX) with airport tarmac tarmac VIP protocol.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- INTERACTIVE DOSSIER / PROPERTY DETAIL MODAL -->
+  <div class="modal-overlay" id="propertyModal" onclick="handleModalBackdropClick(event)">
+    <div class="modal-dossier" id="modalDossier">
+      <button class="modal-close-btn" onclick="closeModal()">✕</button>
+      <img src="" id="modalImg" class="modal-header-img" alt="Property Detail">
+      
+      <div class="modal-content">
+        <div class="modal-title-row">
+          <div>
+            <div class="wireframe-annotation">[MODAL DOSSIER] Real-time Availability & Dynamic Pricing Calculation</div>
+            <span class="badge-pill" id="modalBadge">Serviced Penthouse</span>
+            <h3 class="modal-res-title" id="modalTitle">The Bourdillon Waterfront Penthouse</h3>
+            <p style="color: var(--gold-light); font-size: 0.9rem;" id="modalLoc">Ikoyi, Lagos</p>
+          </div>
+          <div style="text-align: right;">
+            <div class="price-label">Nightly Rate</div>
+            <div class="price-value" id="modalPrice">₦850,000 <small>/ night</small></div>
+          </div>
+        </div>
+
+        <div class="modal-grid-2col">
+          <div>
+            <h4 style="color: #fff; margin-bottom: 12px; font-size: 1.1rem;">Residence Overview</h4>
+            <p id="modalDesc" style="color: var(--text-muted); font-size: 0.92rem; line-height: 1.7; margin-bottom: 24px;">
+              Designed for heads of state, C-suite executives, and global tastemakers. Featuring double-height ceilings, private elevator access, panoramic lagoon vistas, and museum-grade finishes.
+            </p>
+
+            <h4 style="color: #fff; margin-bottom: 12px; font-size: 1.1rem;">Included Luxury Inclusions</h4>
+            <div class="features-list" id="modalAmenities">
+              <!-- Loaded dynamically -->
+            </div>
+          </div>
+
+          <div class="booking-calculator-box">
+            <h4 style="color: #fff; margin-bottom: 16px; font-size: 1rem;">Hold & Reserve Inquiry</h4>
+            
+            <div class="calc-row">
+              <span>Stay Duration:</span>
+              <strong style="color: #fff;">5 Nights</strong>
+            </div>
+            <div class="calc-row">
+              <span>Base Accommodation:</span>
+              <span id="calcBaseRate">₦4,250,000</span>
+            </div>
+            <div class="calc-row">
+              <span>Concierge & Chauffeur:</span>
+              <span style="color: #4ade80;">Included Complimentary</span>
+            </div>
+            <div class="calc-row">
+              <span>Security & Power Guarantee:</span>
+              <span style="color: #4ade80;">Included Complimentary</span>
+            </div>
+            <div class="calc-row total">
+              <span>Total Estimated:</span>
+              <span id="calcTotalRate">₦4,250,000</span>
+            </div>
+
+            <button class="btn-gold" style="width: 100%; margin-top: 18px; padding: 14px;" onclick="confirmHold()">
+              Request VIP Reservation Hold
+            </button>
+            <p style="text-align: center; color: var(--text-muted); font-size: 0.72rem; margin-top: 10px;">
+              Direct integration with Macedonia Realty Private Concierge Desk.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CONTACT / PRIVATE VIEWING MODAL -->
+  <div class="modal-overlay" id="contactModal" onclick="handleContactBackdropClick(event)">
+    <div class="modal-dossier" style="max-width: 540px; padding: 40px;">
+      <button class="modal-close-btn" onclick="closeContactModal()">✕</button>
+      <span class="parent-brand">Macedonia Group Concierge</span>
+      <h3 style="font-family: var(--font-serif); font-size: 2rem; color: #fff; margin: 8px 0 16px;" id="contactModalTitle">
+        Private Viewing Concierge
+      </h3>
+      <p style="color: var(--text-muted); font-size: 0.88rem; margin-bottom: 24px;">
+        Connect with our senior private client advisor for discretion-assured scheduling and bespoke requests.
+      </p>
+
+      <form onsubmit="handleContactSubmit(event)" style="display: flex; flex-direction: column; gap: 16px;">
+        <div>
+          <label style="font-size: 0.75rem; text-transform: uppercase; color: var(--gold-primary);">Full Name & Title</label>
+          <input type="text" required placeholder="e.g. Dr. Alistair Sterling" style="width: 100%; padding: 12px; background: #1a202c; border: 1px solid var(--border-subtle); color: #fff; border-radius: var(--radius-sm); outline: none; margin-top: 4px;">
+        </div>
+        <div>
+          <label style="font-size: 0.75rem; text-transform: uppercase; color: var(--gold-primary);">Contact Number / WhatsApp</label>
+          <input type="tel" required placeholder="+234 ... / +44 ..." style="width: 100%; padding: 12px; background: #1a202c; border: 1px solid var(--border-subtle); color: #fff; border-radius: var(--radius-sm); outline: none; margin-top: 4px;">
+        </div>
+        <div>
+          <label style="font-size: 0.75rem; text-transform: uppercase; color: var(--gold-primary);">Preferred Destination & Residence</label>
+          <select style="width: 100%; padding: 12px; background: #1a202c; border: 1px solid var(--border-subtle); color: #fff; border-radius: var(--radius-sm); outline: none; margin-top: 4px;">
+            <option>Ikoyi / Banana Island Luxury Suites</option>
+            <option>Ikeja GRA Mainland Sanctuary</option>
+            <option>Abuja Diplomatic Enclave (Maitama)</option>
+            <option>Port Harcourt Executive Residence</option>
+            <option>Mayfair, London Serviced Flat</option>
+            <option>Palm Jumeirah, Dubai Penthouse</option>
+          </select>
+        </div>
+        <button type="submit" class="btn-gold" style="padding: 14px; margin-top: 8px;">Transmit VIP Request</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer id="group">
+    <div class="footer-grid">
+      <div>
+        <span class="parent-brand">A Conglomerate Enterprise</span>
+        <h4 style="font-family: var(--font-serif); font-size: 1.6rem; color: #fff; margin: 4px 0 10px;">MACEDONIA GROUP</h4>
+        <p class="footer-brand-bio">
+          Macedonia Group is a diversified holding enterprise with pioneering interests in ultra-luxury real estate (Macedonia Realty), asset management, infrastructure development, and premier hospitality across Africa and world capitals.
+        </p>
+      </div>
+
+      <div>
+        <h5 class="footer-heading">Nigerian Gateways</h5>
+        <ul class="footer-links">
+          <li><a href="#curated" onclick="filterByLocation('lagos-island')">Ikoyi & Banana Island</a></li>
+          <li><a href="#curated" onclick="filterByLocation('lagos-island')">Victoria Island & Eko Atlantic</a></li>
+          <li><a href="#curated" onclick="filterByLocation('lagos-mainland')">Ikeja GRA (Mainland)</a></li>
+          <li><a href="#curated" onclick="filterByLocation('abuja')">Maitama & Asokoro, Abuja</a></li>
+          <li><a href="#curated" onclick="filterByLocation('portharcourt')">Old GRA, Port Harcourt</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h5 class="footer-heading">Global Gateways</h5>
+        <ul class="footer-links">
+          <li><a href="#curated" onclick="filterByLocation('global')">Mayfair & Kensington, London</a></li>
+          <li><a href="#curated" onclick="filterByLocation('global')">Downtown & Palm, Dubai</a></li>
+          <li><a href="#curated" onclick="filterByLocation('global')">Airport Residential, Accra</a></li>
+          <li><a href="#curated">Global Private Portfolio</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h5 class="footer-heading">Private Client Desk</h5>
+        <ul class="footer-links">
+          <li><a href="tel:+2348000000000">+234 (0) 1 MACEDONIA</a></li>
+          <li><a href="mailto:realty@macedoniagroup.com">realty@macedoniagroup.com</a></li>
+          <li><a href="#services">Corporate Extended Stays</a></li>
+          <li><a href="#services">Investor Relations</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <div>&copy; 2026 Macedonia Group. All Rights Reserved. Macedonia Realty is a licensed luxury hospitality operator.</div>
+      <div style="display: flex; gap: 20px;">
+        <span>Privacy & Discretion Protocol</span>
+        <span>Terms of Habitation</span>
+        <span>CTO Architecture v1.0</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- DATA & INTERACTION SCRIPT -->
+  <script>
+    // State management
+    let currentCurrency = 'NGN';
+    const exchangeRates = {
+      NGN: 1,
+      USD: 0.00065,  // Approx 1 USD = ~1,540 NGN
+      GBP: 0.00051   // Approx 1 GBP = ~1,960 NGN
+    };
+    const currencySymbols = {
+      NGN: '₦',
+      USD: '$',
+      GBP: '£'
+    };
+
+    // Curated Residence Dataset
+    const properties = [
+      {
+        id: 'ikoyi-bourdillon',
+        category: 'lagos-island',
+        badge: 'Waterfront Penthouse',
+        title: 'The Bourdillon Waterfront Suite',
+        location: 'Bourdillon, Ikoyi, Lagos',
+        priceNGN: 850000,
+        img: 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1200&q=80',
+        desc: 'Panoramic lagoon views with private infinity pool, dedicated Italian kitchen, and bulletproof acoustic glazing.',
+        fullDesc: 'Occupying the 18th floor on Bourdillon Road, Ikoyi, this serviced penthouse offers 520 sqm of refined sanctuary. Includes a bespoke chef kitchen, wrap-around sunset terrace overlooking Five Cowrie Creek, direct private elevator access, and 24/7 dedicated security protocol.',
+        specs: ['4 Ensuite Bedrooms', 'Private Creek Pier', 'Dedicated Chauffeur', 'Starlink 350Mbps Fiber'],
+        amenities: ['100% Redundant Solar & Gen Power', 'Daily Gourmet Breakfast', 'Private Lift', '24/7 Butler & Security', 'Valet Parking for 4 Cars']
+      },
+      {
+        id: 'eko-atlantic-azuri',
+        category: 'lagos-island',
+        badge: 'Sky Residence',
+        title: 'The Oceanfront Diplomatic Loft',
+        location: 'Eko Atlantic City, Lagos Island',
+        priceNGN: 720000,
+        img: 'https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=1200&q=80',
+        desc: 'Futuristic seaside grandeur with sweeping Atlantic views, modern automated HVAC, and biometric floor access.',
+        fullDesc: 'Situated in the marina district of Eko Atlantic City, this master residence is crafted for multinational executives. Engineered with acoustic smart insulation, integrated home cinema, and high-speed satellite connectivity.',
+        specs: ['3 King Suites', 'Ocean Horizon Terrace', 'Infinity Lap Pool', 'Diplomatic Security Rating'],
+        amenities: ['Continuous Clean Power', 'Executive Office Suite', 'Helipad Access', 'Concierge Escort']
+      },
+      {
+        id: 'ikeja-gra-sanctuary',
+        category: 'lagos-mainland',
+        badge: 'Mainland Haven',
+        title: 'The Isaac John Private Villa Suite',
+        location: 'Ikeja GRA, Lagos Mainland',
+        priceNGN: 480000,
+        img: 'https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=1200&q=80',
+        desc: 'Serene tree-lined seclusion in the heart of Ikeja GRA. 12 minutes from Murtala Muhammed International Airport.',
+        fullDesc: 'Nestled behind private mature gardens in exclusive Ikeja GRA, this estate is ideal for aviation executives, diaspora business owners, and corporate leaders needing proximity to both the airport and Ikeja business hubs.',
+        specs: ['4 Bedroom Detached Villa', 'Private Garden & Plunge Pool', '12 Mins to MMIA Airport', 'Full Butler Service'],
+        amenities: ['24/7 Solar Inverter & Heavy Gen', 'Airport Protocol & Escort', 'Private Gym', 'CCTV & Vetted Guards']
+      },
+      {
+        id: 'abuja-maitama-crest',
+        category: 'abuja',
+        badge: 'Diplomatic Estate',
+        title: 'The Maitama Hills Presidential Haven',
+        location: 'Maitama Diplomatic Zone, Abuja',
+        priceNGN: 950000,
+        img: 'https://images.unsplash.com/photo-1600566753376-12c8ab7fb75b?auto=format&fit=crop&w=1200&q=80',
+        desc: 'Overlooking the Abuja city bowl. Fortified ambassadorial standards with heated pool and 12-person dining hall.',
+        fullDesc: 'Designed to host foreign dignitaries and presidential delegations. Perched high on the Maitama hills, featuring bullet-resistant security shutters, subterranean wine cellar, and staff quarters.',
+        specs: ['5 Palatial Suites', 'Executive Boardroom', 'Heated Mountain-view Pool', 'Armed Escort Cleared'],
+        amenities: ['Triple-Redundant Power Grid', 'In-house Executive Chef', 'Armored Land Cruiser Option', 'High-Sec Perimeter']
+      },
+      {
+        id: 'ph-old-gra-manor',
+        category: 'portharcourt',
+        badge: 'Garden City Estate',
+        title: 'The Old GRA Hydrocarbon Executive Lodge',
+        location: 'Old GRA, Port Harcourt',
+        priceNGN: 550000,
+        img: 'https://images.unsplash.com/photo-1600585154526-990dced4db0d?auto=format&fit=crop&w=1200&q=80',
+        desc: 'Ultra-secure executive retreat favored by energy sector captains. Pristine manicured lawns and private squash court.',
+        fullDesc: 'Refined southern hospitality crafted for energy sector dignitaries and multinational teams. Features uninterrupted industrial power supply, state-of-the-art teleconferencing suites, and an Olympic squash court.',
+        specs: ['4 Master Suites', 'Private Squash & Tennis Court', 'Armored Transport Ready', '24/7 Security Command'],
+        amenities: ['Guaranteed Zero-Downtime Power', 'Conference Facility', 'Personal Sommelier', 'High-Speed Starlink']
+      },
+      {
+        id: 'london-mayfair-suite',
+        category: 'global',
+        badge: 'Global Gateway',
+        title: 'The Curzon Mayfair Serviced Penthouse',
+        location: 'Mayfair, London, UK',
+        priceNGN: 1850000,
+        img: 'https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?auto=format&fit=crop&w=1200&q=80',
+        desc: 'Overlooking Hyde Park. Classic Georgian proportion infused with minimalist modern luxury and Harrods delivery concierge.',
+        fullDesc: 'A prestigious London pied-à-terre for Macedonia Group clients visiting the UK capital. Steps from Berkeley Square and Mount Street boutiques, with round-the-clock Mayfair concierge and private Rolls-Royce chauffeur service.',
+        specs: ['3 Deluxe Suites', 'Views of Hyde Park', 'Mayfair White-Glove Desk', 'Private Wine Cellar'],
+        amenities: ['Harrods VIP Shopping Delivery', 'Private Chauffeur', '24hr Doorman', 'Bang & Olufsen Integrated Audio']
+      }
+    ];
+
+    // Format currency
+    function formatPrice(amountNGN) {
+      const rate = exchangeRates[currentCurrency];
+      const converted = Math.round(amountNGN * rate);
+      const symbol = currencySymbols[currentCurrency];
+      return `${symbol}${converted.toLocaleString()}`;
+    }
+
+    // Render Cards
+    function renderProperties(filteredList = properties) {
+      const grid = document.getElementById('residenceGrid');
+      const countEl = document.getElementById('residenceCount');
+      countEl.innerText = filteredList.length;
+
+      grid.innerHTML = filteredList.map(item => `
+        <article class="residence-card" data-category="${item.category}">
+          <div class="wireframe-annotation">[CARD: ${item.id}] Priority: ${item.badge}</div>
+          <div class="card-media">
+            <span class="badge-pill">${item.badge}</span>
+            <span class="card-location-tag">📍 ${item.location}</span>
+            <img src="${item.img}" class="residence-img" alt="${item.title}" loading="lazy">
+          </div>
+          <div class="card-body">
+            <h4 class="card-title">${item.title}</h4>
+            <p class="card-desc">${item.desc}</p>
+            
+            <div class="features-list">
+              ${item.specs.map(spec => `<span class="feature-tag">${spec}</span>`).join('')}
+            </div>
+
+            <div class="card-footer">
+              <div class="price-block">
+                <span class="price-label">Serviced Nightly</span>
+                <span class="price-value">${formatPrice(item.priceNGN)} <small>/ night</small></span>
+              </div>
+              <button class="btn-gold" onclick="openPropertyModal('${item.id}')">Explore Residence</button>
+            </div>
+          </div>
+        </article>
+      `).join('');
+    }
+
+    // Filter by dropdown
+    function filterProperties() {
+      const selected = document.getElementById('dockDestination').value;
+      if (selected === 'all') {
+        renderProperties(properties);
+      } else {
+        const filtered = properties.filter(p => p.category === selected);
+        renderProperties(filtered);
+      }
+    }
+
+    // Filter by tabs
+    function setLocTab(category, btnElement) {
+      document.querySelectorAll('.loc-tab').forEach(el => el.classList.remove('active'));
+      btnElement.classList.add('active');
+
+      if (category === 'all') {
+        renderProperties(properties);
+        document.getElementById('dockDestination').value = 'all';
+      } else {
+        const filtered = properties.filter(p => p.category === category);
+        renderProperties(filtered);
+        document.getElementById('dockDestination').value = category;
+      }
+    }
+
+    function filterByLocation(category) {
+      const filtered = properties.filter(p => p.category === category);
+      renderProperties(filtered);
+      document.getElementById('dockDestination').value = category;
+      document.getElementById('curated').scrollIntoView({ behavior: 'smooth' });
+    }
+
+    // Currency Switcher
+    function setCurrency(curr) {
+      currentCurrency = curr;
+      document.querySelectorAll('#currNGN, #currUSD, #currGBP').forEach(btn => btn.classList.remove('active'));
+      document.getElementById(`curr${curr}`).classList.add('active');
+      renderProperties();
+
+      // update modal if open
+      if (currentActiveProperty) {
+        updateModalPricing(currentActiveProperty);
+      }
+    }
+
+    // Mode Toggle (Luxury vs Wireframe)
+    function setMode(mode) {
+      if (mode === 'wireframe') {
+        document.body.classList.add('wireframe-mode');
+        document.getElementById('btnModeWireframe').classList.add('active');
+        document.getElementById('btnModeLuxury').classList.remove('active');
+      } else {
+        document.body.classList.remove('wireframe-mode');
+        document.getElementById('btnModeLuxury').classList.add('active');
+        document.getElementById('btnModeWireframe').classList.remove('active');
+      }
+    }
+
+    // Modal Dossier Logic
+    let currentActiveProperty = null;
+
+    function openPropertyModal(id) {
+      const prop = properties.find(p => p.id === id);
+      if (!prop) return;
+      currentActiveProperty = prop;
+
+      document.getElementById('modalImg').src = prop.img;
+      document.getElementById('modalBadge').innerText = prop.badge;
+      document.getElementById('modalTitle').innerText = prop.title;
+      document.getElementById('modalLoc').innerText = `📍 ${prop.location}`;
+      document.getElementById('modalDesc').innerText = prop.fullDesc;
+
+      updateModalPricing(prop);
+
+      const amenList = document.getElementById('modalAmenities');
+      amenList.innerHTML = prop.amenities.map(a => `<span class="feature-tag" style="background: rgba(212,175,55,0.1); border-color: rgba(212,175,55,0.25); color: #fff;">✓ ${a}</span>`).join('');
+
+      document.getElementById('propertyModal').classList.add('active');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function updateModalPricing(prop) {
+      const formattedNightly = formatPrice(prop.priceNGN);
+      document.getElementById('modalPrice').innerHTML = `${formattedNightly} <small>/ night</small>`;
+
+      const total5Nights = formatPrice(prop.priceNGN * 5);
+      document.getElementById('calcBaseRate').innerText = total5Nights;
+      document.getElementById('calcTotalRate').innerText = total5Nights;
+    }
+
+    function closeModal() {
+      document.getElementById('propertyModal').classList.remove('active');
+      document.body.style.overflow = 'auto';
+      currentActiveProperty = null;
+    }
+
+    function handleModalBackdropClick(e) {
+      if (e.target.id === 'propertyModal') {
+        closeModal();
+      }
+    }
+
+    function confirmHold() {
+      if (!currentActiveProperty) return;
+      alert(`VIP Reservation Hold Request Initiated for: ${currentActiveProperty.title}.\n\nA private client concierge associate from Macedonia Realty has received your tokenized hold request.`);
+      closeModal();
+    }
+
+    // Contact Modal
+    function openContactModal(title) {
+      document.getElementById('contactModalTitle').innerText = title || 'Private Client Concierge';
+      document.getElementById('contactModal').classList.add('active');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeContactModal() {
+      document.getElementById('contactModal').classList.remove('active');
+      document.body.style.overflow = 'auto';
+    }
+
+    function handleContactBackdropClick(e) {
+      if (e.target.id === 'contactModal') {
+        closeContactModal();
+      }
+    }
+
+    function handleContactSubmit(e) {
+      e.preventDefault();
+      alert('Your inquiry has been encrypted and routed directly to the Macedonia Realty Private Client Desk. A Senior Concierge Executive will reach out within 15 minutes.');
+      closeContactModal();
+    }
+
+    // Initialize
+    window.addEventListener('DOMContentLoaded', () => {
+      renderProperties();
+    });
+  </script>
+</body>
+</html>
