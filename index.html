@@ -6,7 +6,7 @@
   <title>Macedonia Realty | Luxury Serviced Residences & Penthouses</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <style>
     :root {
       --bg-primary: #0a0c10;
@@ -21,51 +21,10 @@
       --border-card: rgba(255, 255, 255, 0.08);
       --font-serif: 'Cormorant Garamond', Georgia, serif;
       --font-sans: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
-      --font-mono: 'Space Mono', monospace;
       --transition-smooth: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
       --radius-sm: 6px;
       --radius-md: 12px;
       --radius-lg: 20px;
-    }
-
-    /* WIREFRAME MODE STYLES */
-    body.wireframe-mode {
-      --bg-primary: #0d1117;
-      --bg-surface: #161b22;
-      --bg-surface-elevated: #21262d;
-      --text-main: #e6edf3;
-      --text-muted: #8b949e;
-      --gold-primary: #58a6ff;
-      --gold-light: #79c0ff;
-      --gold-glow: rgba(88, 166, 255, 0.2);
-      --border-subtle: #30363d;
-      --border-card: #30363d;
-      font-family: var(--font-mono) !important;
-    }
-
-    body.wireframe-mode * {
-      border-radius: 0 !important;
-    }
-
-    body.wireframe-mode .wireframe-annotation {
-      display: inline-block !important;
-    }
-
-    body.wireframe-mode .residence-img {
-      filter: grayscale(100%) contrast(120%) opacity(0.7);
-    }
-
-    .wireframe-annotation {
-      display: none;
-      font-family: var(--font-mono);
-      font-size: 0.72rem;
-      background: rgba(88, 166, 255, 0.15);
-      color: #79c0ff;
-      border: 1px dashed #58a6ff;
-      padding: 2px 8px;
-      margin-bottom: 6px;
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
     }
 
     * {
@@ -83,52 +42,15 @@
       transition: background-color 0.4s ease, color 0.4s ease;
     }
 
-    /* FLOATING CONTROL BAR (Mode Switcher + Currency) */
-    .director-bar {
-      position: fixed;
-      top: 16px;
-      right: 16px;
-      z-index: 1000;
-      display: flex;
-      gap: 10px;
-      background: rgba(18, 22, 31, 0.85);
-      backdrop-filter: blur(16px);
-      padding: 6px 10px;
-      border: 1px solid var(--border-subtle);
-      border-radius: 40px;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-    }
-
-    .director-btn {
-      background: transparent;
-      border: 1px solid transparent;
-      color: var(--text-main);
-      padding: 6px 14px;
-      border-radius: 30px;
-      cursor: pointer;
-      font-size: 0.78rem;
-      font-weight: 600;
-      letter-spacing: 0.03em;
-      transition: var(--transition-smooth);
-      display: flex;
-      align-items: center;
-      gap: 6px;
-    }
-
-    .director-btn.active, .director-btn:hover {
-      background: var(--gold-primary);
-      color: #000;
-    }
-
     /* TOP HEADER / NAV */
     header {
       position: sticky;
       top: 0;
       z-index: 900;
-      background: rgba(10, 12, 16, 0.88);
+      background: rgba(10, 12, 16, 0.92);
       backdrop-filter: blur(20px);
       border-bottom: 1px solid var(--border-subtle);
-      padding: 18px 48px;
+      padding: 16px 48px;
       display: flex;
       justify-content: space-between;
       align-items: center;
@@ -184,6 +106,32 @@
       display: flex;
       align-items: center;
       gap: 16px;
+    }
+
+    /* CURRENCY SELECTOR PILL */
+    .currency-pill-box {
+      display: flex;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid var(--border-subtle);
+      border-radius: 30px;
+      padding: 3px;
+    }
+
+    .curr-btn {
+      background: transparent;
+      border: none;
+      color: var(--text-muted);
+      padding: 5px 12px;
+      border-radius: 20px;
+      cursor: pointer;
+      font-size: 0.76rem;
+      font-weight: 600;
+      transition: var(--transition-smooth);
+    }
+
+    .curr-btn.active, .curr-btn:hover {
+      background: var(--gold-primary);
+      color: #0a0c10;
     }
 
     .btn-gold {
@@ -777,16 +725,6 @@
 </head>
 <body>
 
-  <!-- DIRECTOR CONTROLS (Mode Toggle & Live Currency Converter) -->
-  <aside class="director-bar" aria-label="Review Controls">
-    <button class="director-btn active" id="btnModeLuxury" onclick="setMode('luxury')">✨ Luxury Hi-Fi</button>
-    <button class="director-btn" id="btnModeWireframe" onclick="setMode('wireframe')">📐 Wireframe Mode</button>
-    <div style="width: 1px; height: 20px; background: rgba(255,255,255,0.15); margin: auto 2px;"></div>
-    <button class="director-btn" id="currNGN" onclick="setCurrency('NGN')">₦ NGN</button>
-    <button class="director-btn" id="currUSD" onclick="setCurrency('USD')">$ USD</button>
-    <button class="director-btn" id="currGBP" onclick="setCurrency('GBP')">£ GBP</button>
-  </aside>
-
   <!-- HEADER -->
   <header>
     <div class="brand-group">
@@ -803,6 +741,13 @@
     </nav>
 
     <div class="nav-actions">
+      <!-- SLEEK EMBEDDED CURRENCY SWITCHER -->
+      <div class="currency-pill-box" aria-label="Currency Selector">
+        <button class="curr-btn active" id="currNGN" onclick="setCurrency('NGN')">₦ NGN</button>
+        <button class="curr-btn" id="currUSD" onclick="setCurrency('USD')">$ USD</button>
+        <button class="curr-btn" id="currGBP" onclick="setCurrency('GBP')">£ GBP</button>
+      </div>
+
       <button class="btn-outline" onclick="openContactModal('Private Viewing')">Private Viewing</button>
       <button class="btn-gold" onclick="openContactModal('Concierge Desk')">VIP Concierge</button>
     </div>
@@ -811,7 +756,6 @@
   <!-- HERO SECTION -->
   <section class="hero-section">
     <div class="hero-content">
-      <div class="wireframe-annotation">[HERO COMPONENT] Dynamic Video / Cinematic Carousel + Intent Engine</div>
       <div class="hero-eyebrow">
         <span>●</span> Ultra-Luxury Serviced Residences
       </div>
@@ -858,7 +802,6 @@
 
   <!-- DESTINATIONS FILTER PILLS -->
   <div class="location-tabs-bar" id="destinations">
-    <div class="wireframe-annotation" style="width: 100%; text-align: center;">[FILTER ENGINE] Asynchronous Tab Selection & Instant Inventory Filtering</div>
     <button class="loc-tab active" onclick="setLocTab('all', this)">All Enclaves</button>
     <button class="loc-tab" onclick="setLocTab('lagos-island', this)">Ikoyi & Banana Island</button>
     <button class="loc-tab" onclick="setLocTab('lagos-island', this)">Victoria Island & Eko Atlantic</button>
@@ -872,7 +815,6 @@
   <section class="section-container" id="curated">
     <div class="section-header">
       <div>
-        <div class="wireframe-annotation">[GRID MODULE] Dynamic Cards with Currency Conversion & Dossier Trigger</div>
         <p class="section-eyebrow">Signature Portfolio</p>
         <h3 class="section-title">Handcrafted Luxury Stays</h3>
       </div>
@@ -882,14 +824,13 @@
     </div>
 
     <div class="grid-container" id="residenceGrid">
-      <!-- Cards dynamically generated via JS for interactive state -->
+      <!-- Cards dynamically generated via JS -->
     </div>
   </section>
 
   <!-- BESPOKE SERVICES -->
   <section class="amenities-section" id="services">
     <div class="section-container" style="padding: 0;">
-      <div class="wireframe-annotation">[VALUE PROP] White-Glove Hospitality Matrix for High-Net-Worth & Corporate Clients</div>
       <p class="section-eyebrow">The Macedonia Standard</p>
       <h3 class="section-title">Beyond Accommodation: An Effortless Ecosystem</h3>
       
@@ -915,13 +856,13 @@
         <div class="amenity-card">
           <div class="amenity-icon">🚘</div>
           <h4 class="amenity-title">Executive Chauffeur Fleet</h4>
-          <p class="amenity-desc">Armored and luxury vehicle transfers (Range Rover, Mercedes S-Class, Lexus LX) with airport tarmac tarmac VIP protocol.</p>
+          <p class="amenity-desc">Armored and luxury vehicle transfers (Range Rover, Mercedes S-Class, Lexus LX) with airport tarmac VIP protocol.</p>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- INTERACTIVE DOSSIER / PROPERTY DETAIL MODAL -->
+  <!-- INTERACTIVE DETAIL / BOOKING MODAL -->
   <div class="modal-overlay" id="propertyModal" onclick="handleModalBackdropClick(event)">
     <div class="modal-dossier" id="modalDossier">
       <button class="modal-close-btn" onclick="closeModal()">✕</button>
@@ -930,7 +871,6 @@
       <div class="modal-content">
         <div class="modal-title-row">
           <div>
-            <div class="wireframe-annotation">[MODAL DOSSIER] Real-time Availability & Dynamic Pricing Calculation</div>
             <span class="badge-pill" id="modalBadge">Serviced Penthouse</span>
             <h3 class="modal-res-title" id="modalTitle">The Bourdillon Waterfront Penthouse</h3>
             <p style="color: var(--gold-light); font-size: 0.9rem;" id="modalLoc">Ikoyi, Lagos</p>
@@ -1075,7 +1015,6 @@
       <div style="display: flex; gap: 20px;">
         <span>Privacy & Discretion Protocol</span>
         <span>Terms of Habitation</span>
-        <span>CTO Architecture v1.0</span>
       </div>
     </div>
   </footer>
@@ -1193,7 +1132,6 @@
 
       grid.innerHTML = filteredList.map(item => `
         <article class="residence-card" data-category="${item.category}">
-          <div class="wireframe-annotation">[CARD: ${item.id}] Priority: ${item.badge}</div>
           <div class="card-media">
             <span class="badge-pill">${item.badge}</span>
             <span class="card-location-tag">📍 ${item.location}</span>
@@ -1262,19 +1200,6 @@
       // update modal if open
       if (currentActiveProperty) {
         updateModalPricing(currentActiveProperty);
-      }
-    }
-
-    // Mode Toggle (Luxury vs Wireframe)
-    function setMode(mode) {
-      if (mode === 'wireframe') {
-        document.body.classList.add('wireframe-mode');
-        document.getElementById('btnModeWireframe').classList.add('active');
-        document.getElementById('btnModeLuxury').classList.remove('active');
-      } else {
-        document.body.classList.remove('wireframe-mode');
-        document.getElementById('btnModeLuxury').classList.add('active');
-        document.getElementById('btnModeWireframe').classList.remove('active');
       }
     }
 
