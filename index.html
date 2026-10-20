@@ -5,24 +5,42 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Macedonia Realty | Luxury Serviced Residences & Penthouses</title>
   <meta name="description" content="Macedonia Realty by Macedonia Group: Ultra-luxury serviced apartments, executive suites, and diplomatic penthouses across Lagos, Abuja, Port Harcourt, London, and Dubai.">
+  
+  <!-- BRAND FAVICON FROM EMBLEM -->
+  <link rel="icon" type="image/png" href="assets/favicon.png">
+  <link rel="apple-touch-icon" href="assets/favicon.png">
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  
   <style>
     :root {
-      --bg-primary: #0a0c10;
-      --bg-surface: #12161f;
-      --bg-surface-elevated: #1a202c;
-      --text-main: #f8fafc;
-      --text-muted: #94a3b8;
-      --gold-primary: #d4af37;
-      --gold-light: #f3e5ab;
-      --gold-glow: rgba(212, 175, 55, 0.25);
-      --border-subtle: rgba(212, 175, 55, 0.18);
+      /* THEME PALETTE EXTRACTED DIRECTLY FROM OFFICIAL MACEDONIA REALTY BRAND CREST */
+      --brand-gold: #DA9B49;
+      --brand-gold-light: #F3CA85;
+      --brand-gold-dark: #B77A2C;
+      --brand-gold-glow: rgba(218, 155, 73, 0.28);
+
+      --brand-emerald: #0F4536;
+      --brand-emerald-light: #165E4A;
+      --brand-emerald-glow: rgba(15, 69, 54, 0.35);
+
+      --bg-primary: #070A08;
+      --bg-surface: #0E1411;
+      --bg-surface-elevated: #151E1A;
+      
+      --text-main: #F8FAFC;
+      --text-muted: #94A3B8;
+      
+      --border-subtle: rgba(218, 155, 73, 0.22);
+      --border-emerald: rgba(15, 69, 54, 0.45);
       --border-card: rgba(255, 255, 255, 0.08);
+
       --font-serif: 'Cormorant Garamond', Georgia, serif;
       --font-sans: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
       --transition-smooth: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      
       --radius-sm: 6px;
       --radius-md: 12px;
       --radius-lg: 20px;
@@ -51,10 +69,10 @@
       position: sticky;
       top: 0;
       z-index: 900;
-      background: rgba(10, 12, 16, 0.94);
+      background: rgba(7, 10, 8, 0.94);
       backdrop-filter: blur(20px);
       border-bottom: 1px solid var(--border-subtle);
-      padding: 16px 48px;
+      padding: 14px 48px;
       display: flex;
       justify-content: space-between;
       align-items: center;
@@ -62,22 +80,40 @@
 
     .brand-group {
       display: flex;
-      flex-direction: column;
+      align-items: center;
+      gap: 14px;
       cursor: pointer;
       text-decoration: none;
+    }
+
+    .brand-logo-img {
+      height: 52px;
+      width: auto;
+      object-fit: contain;
+      filter: drop-shadow(0 2px 10px rgba(0,0,0,0.5));
+      transition: transform 0.3s ease;
+    }
+
+    .brand-group:hover .brand-logo-img {
+      transform: scale(1.05);
+    }
+
+    .brand-text-col {
+      display: flex;
+      flex-direction: column;
     }
 
     .parent-brand {
       font-size: 0.68rem;
       letter-spacing: 0.28em;
       text-transform: uppercase;
-      color: var(--gold-primary);
+      color: var(--brand-gold);
       font-weight: 700;
     }
 
     .realty-brand {
       font-family: var(--font-serif);
-      font-size: 1.85rem;
+      font-size: 1.75rem;
       font-weight: 700;
       letter-spacing: 0.04em;
       color: #ffffff;
@@ -85,7 +121,7 @@
     }
 
     .realty-brand span {
-      color: var(--gold-primary);
+      color: var(--brand-gold);
       font-style: italic;
     }
 
@@ -105,7 +141,7 @@
     }
 
     nav.main-nav a:hover, nav.main-nav a.active {
-      color: var(--gold-light);
+      color: var(--brand-gold-light);
     }
 
     .nav-actions {
@@ -136,13 +172,13 @@
     }
 
     .curr-btn.active, .curr-btn:hover {
-      background: var(--gold-primary);
-      color: #0a0c10;
+      background: var(--brand-gold);
+      color: #070A08;
     }
 
     .btn-gold {
-      background: linear-gradient(135deg, #d4af37 0%, #b89325 100%);
-      color: #0b0d10;
+      background: linear-gradient(135deg, #DA9B49 0%, #B77A2C 100%);
+      color: #070A08;
       font-weight: 600;
       padding: 10px 22px;
       border-radius: var(--radius-sm);
@@ -151,7 +187,7 @@
       font-size: 0.85rem;
       letter-spacing: 0.04em;
       transition: var(--transition-smooth);
-      box-shadow: 0 4px 15px var(--gold-glow);
+      box-shadow: 0 4px 15px var(--brand-gold-glow);
       display: inline-flex;
       align-items: center;
       justify-content: center;
@@ -161,13 +197,13 @@
 
     .btn-gold:hover {
       transform: translateY(-2px);
-      box-shadow: 0 6px 20px rgba(212, 175, 55, 0.4);
+      box-shadow: 0 6px 20px rgba(218, 155, 73, 0.45);
     }
 
     .btn-outline {
       background: transparent;
-      color: var(--gold-primary);
-      border: 1px solid var(--gold-primary);
+      color: var(--brand-gold);
+      border: 1px solid var(--brand-gold);
       padding: 9px 20px;
       border-radius: var(--radius-sm);
       cursor: pointer;
@@ -180,7 +216,7 @@
     }
 
     .btn-outline:hover {
-      background: rgba(212, 175, 55, 0.1);
+      background: rgba(218, 155, 73, 0.12);
       color: #fff;
     }
 
@@ -259,8 +295,9 @@
       align-items: center;
       justify-content: center;
       padding: 90px 48px;
-      background: radial-gradient(circle at 50% 20%, rgba(212, 175, 55, 0.1) 0%, transparent 60%),
-                  linear-gradient(180deg, rgba(10, 12, 16, 0.35) 0%, rgba(10, 12, 16, 1) 100%),
+      background: radial-gradient(circle at 50% 20%, rgba(15, 69, 54, 0.25) 0%, transparent 60%),
+                  radial-gradient(circle at 80% 80%, rgba(218, 155, 73, 0.12) 0%, transparent 50%),
+                  linear-gradient(180deg, rgba(7, 10, 8, 0.4) 0%, rgba(7, 10, 8, 1) 100%),
                   url('https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=2000&q=80') center/cover no-repeat;
     }
 
@@ -275,15 +312,16 @@
       display: inline-flex;
       align-items: center;
       gap: 10px;
-      background: rgba(212, 175, 55, 0.12);
+      background: rgba(15, 69, 54, 0.5);
       border: 1px solid var(--border-subtle);
       padding: 6px 18px;
       border-radius: 40px;
-      color: var(--gold-light);
+      color: var(--brand-gold-light);
       font-size: 0.8rem;
       letter-spacing: 0.2em;
       text-transform: uppercase;
       margin-bottom: 24px;
+      box-shadow: 0 4px 15px var(--brand-emerald-glow);
     }
 
     .hero-title {
@@ -297,7 +335,7 @@
 
     .hero-title em {
       font-style: italic;
-      color: var(--gold-light);
+      color: var(--brand-gold-light);
       font-weight: 600;
     }
 
@@ -311,7 +349,7 @@
 
     /* SEARCH / FILTER CONCIERGE DOCK */
     .search-dock {
-      background: rgba(18, 22, 31, 0.94);
+      background: rgba(14, 20, 17, 0.94);
       backdrop-filter: blur(20px);
       border: 1px solid var(--border-subtle);
       border-radius: var(--radius-md);
@@ -320,7 +358,7 @@
       grid-template-columns: 2fr 1.6fr 1.4fr 1.2fr;
       gap: 20px;
       align-items: center;
-      box-shadow: 0 20px 50px rgba(0,0,0,0.6);
+      box-shadow: 0 20px 50px rgba(0,0,0,0.6), 0 0 25px var(--brand-emerald-glow);
       text-align: left;
     }
 
@@ -342,7 +380,7 @@
       font-size: 0.72rem;
       letter-spacing: 0.12em;
       text-transform: uppercase;
-      color: var(--gold-primary);
+      color: var(--brand-gold);
       font-weight: 600;
     }
 
@@ -357,11 +395,11 @@
     }
 
     .dock-select option {
-      background: #12161f;
+      background: #0E1411;
       color: #fff;
     }
 
-    /* LUXURY DATE PICKER POPUP */
+    /* DATE PICKER POPUP */
     .date-picker-popup {
       display: none;
       position: absolute;
@@ -390,14 +428,14 @@
     .date-picker-grid label {
       font-size: 0.72rem;
       text-transform: uppercase;
-      color: var(--gold-primary);
+      color: var(--brand-gold);
       display: block;
       margin-bottom: 4px;
     }
 
     .date-picker-grid input {
       width: 100%;
-      background: #0a0c10;
+      background: #070A08;
       border: 1px solid rgba(255,255,255,0.15);
       padding: 8px;
       color: #fff;
@@ -427,9 +465,9 @@
     }
 
     .loc-tab.active, .loc-tab:hover {
-      background: rgba(212, 175, 55, 0.15);
-      border-color: var(--gold-primary);
-      color: var(--gold-light);
+      background: rgba(15, 69, 54, 0.45);
+      border-color: var(--brand-gold);
+      color: var(--brand-gold-light);
     }
 
     /* RESIDENCES GRID */
@@ -450,7 +488,7 @@
       font-size: 0.75rem;
       text-transform: uppercase;
       letter-spacing: 0.2em;
-      color: var(--gold-primary);
+      color: var(--brand-gold);
       font-weight: 700;
       margin-bottom: 8px;
     }
@@ -494,15 +532,15 @@
 
     .residence-card:hover {
       transform: translateY(-8px);
-      border-color: var(--gold-primary);
-      box-shadow: 0 20px 40px rgba(0,0,0,0.5), 0 0 20px var(--gold-glow);
+      border-color: var(--brand-gold);
+      box-shadow: 0 20px 40px rgba(0,0,0,0.6), 0 0 20px var(--brand-gold-glow);
     }
 
     .card-media {
       position: relative;
       height: 260px;
       overflow: hidden;
-      background: #1a202c;
+      background: #151E1A;
       cursor: pointer;
     }
 
@@ -521,10 +559,10 @@
       position: absolute;
       top: 16px;
       left: 16px;
-      background: rgba(10, 12, 16, 0.8);
+      background: rgba(15, 69, 54, 0.75);
       backdrop-filter: blur(8px);
       border: 1px solid var(--border-subtle);
-      color: var(--gold-light);
+      color: var(--brand-gold-light);
       padding: 4px 12px;
       border-radius: 30px;
       font-size: 0.72rem;
@@ -538,7 +576,7 @@
       position: absolute;
       bottom: 14px;
       left: 16px;
-      background: rgba(0,0,0,0.7);
+      background: rgba(7, 10, 8, 0.75);
       backdrop-filter: blur(6px);
       color: #fff;
       padding: 4px 10px;
@@ -612,7 +650,7 @@
     .price-value {
       font-size: 1.25rem;
       font-weight: 700;
-      color: var(--gold-light);
+      color: var(--brand-gold-light);
     }
 
     .price-value small {
@@ -647,20 +685,21 @@
     }
 
     .amenity-card:hover {
-      border-color: var(--gold-primary);
+      border-color: var(--brand-gold);
       transform: translateY(-4px);
+      box-shadow: 0 10px 30px var(--brand-emerald-glow);
     }
 
     .amenity-icon {
       width: 48px;
       height: 48px;
       border-radius: 12px;
-      background: rgba(212, 175, 55, 0.12);
+      background: rgba(15, 69, 54, 0.45);
       border: 1px solid var(--border-subtle);
       display: flex;
       align-items: center;
       justify-content: center;
-      color: var(--gold-primary);
+      color: var(--brand-gold);
       font-size: 1.4rem;
       margin-bottom: 20px;
     }
@@ -681,7 +720,7 @@
     }
 
     .amenity-action-btn {
-      color: var(--gold-primary);
+      color: var(--brand-gold);
       background: transparent;
       border: none;
       font-size: 0.8rem;
@@ -694,7 +733,7 @@
     }
 
     .amenity-action-btn:hover {
-      color: var(--gold-light);
+      color: var(--brand-gold-light);
       text-decoration: underline;
     }
 
@@ -705,7 +744,7 @@
       left: 0;
       width: 100vw;
       height: 100vh;
-      background: rgba(5, 7, 10, 0.88);
+      background: rgba(5, 7, 6, 0.88);
       backdrop-filter: blur(12px);
       z-index: 2000;
       display: none;
@@ -764,7 +803,7 @@
     }
 
     .thumb-btn.active, .thumb-btn:hover {
-      border-color: var(--gold-primary);
+      border-color: var(--brand-gold);
       opacity: 1;
       transform: scale(1.05);
     }
@@ -779,7 +818,7 @@
       position: absolute;
       top: 20px;
       right: 20px;
-      background: rgba(0,0,0,0.75);
+      background: rgba(7, 10, 8, 0.75);
       border: 1px solid rgba(255,255,255,0.2);
       color: #fff;
       width: 38px;
@@ -795,8 +834,8 @@
     }
 
     .modal-close-btn:hover {
-      background: var(--gold-primary);
-      color: #000;
+      background: var(--brand-gold);
+      color: #070A08;
     }
 
     .modal-content {
@@ -846,7 +885,7 @@
       padding-top: 16px;
       font-size: 1.15rem;
       font-weight: 700;
-      color: var(--gold-light);
+      color: var(--brand-gold-light);
     }
 
     .addon-check-label {
@@ -860,12 +899,12 @@
 
     /* VOUCHER MODAL (CONFIRMATION) */
     .voucher-card {
-      background: #11151c;
-      border: 1px solid var(--gold-primary);
+      background: var(--bg-surface);
+      border: 1px solid var(--brand-gold);
       border-radius: var(--radius-md);
       padding: 32px;
       text-align: center;
-      box-shadow: 0 10px 40px var(--gold-glow);
+      box-shadow: 0 10px 40px var(--brand-gold-glow);
     }
 
     .voucher-code {
@@ -873,9 +912,9 @@
       font-family: monospace;
       font-size: 1.3rem;
       letter-spacing: 0.15em;
-      background: rgba(212, 175, 55, 0.15);
-      border: 1px dashed var(--gold-primary);
-      color: var(--gold-light);
+      background: rgba(218, 155, 73, 0.15);
+      border: 1px dashed var(--brand-gold);
+      color: var(--brand-gold-light);
       padding: 8px 18px;
       margin: 16px 0;
       border-radius: var(--radius-sm);
@@ -894,8 +933,8 @@
     }
 
     .toast-msg {
-      background: #151b24;
-      border: 1px solid var(--gold-primary);
+      background: var(--bg-surface-elevated);
+      border: 1px solid var(--brand-gold);
       color: #fff;
       padding: 12px 20px;
       border-radius: var(--radius-sm);
@@ -914,7 +953,7 @@
 
     /* FOOTER */
     footer {
-      background: #06080a;
+      background: #050706;
       border-top: 1px solid var(--border-subtle);
       padding: 60px 48px 30px;
     }
@@ -924,6 +963,15 @@
       grid-template-columns: 2fr 1fr 1fr 1fr;
       gap: 40px;
       margin-bottom: 48px;
+    }
+
+    .footer-logo-img {
+      height: 64px;
+      width: auto;
+      object-fit: contain;
+      margin-bottom: 12px;
+      display: block;
+      filter: drop-shadow(0 2px 10px rgba(0,0,0,0.5));
     }
 
     .footer-brand-bio {
@@ -963,7 +1011,7 @@
     }
 
     .footer-links a:hover, .footer-links button:hover {
-      color: var(--gold-light);
+      color: var(--brand-gold-light);
     }
 
     .footer-bottom {
@@ -982,7 +1030,7 @@
     }
 
     .footer-bottom a:hover {
-      color: var(--gold-light);
+      color: var(--brand-gold-light);
     }
 
     /* RESPONSIVE */
@@ -994,17 +1042,18 @@
     }
 
     @media (max-width: 768px) {
-      header { padding: 14px 20px; }
+      header { padding: 12px 18px; }
       nav.main-nav { display: none; }
       .nav-actions .btn-outline { display: none; }
       .mobile-menu-btn { display: block; }
+      .brand-logo-img { height: 42px; }
       .hero-title { font-size: 2.4rem; }
       .search-dock { grid-template-columns: 1fr; padding: 20px; }
       .section-container { padding: 40px 20px; }
       .footer-grid { grid-template-columns: 1fr; }
       .modal-content { padding: 24px 20px; }
       .modal-header-img { height: 260px; }
-      .currency-pill-box { display: none; } /* accessible in mobile drawer */
+      .currency-pill-box { display: none; }
     }
   </style>
 </head>
@@ -1020,16 +1069,19 @@
   <aside class="mobile-drawer" id="mobileDrawer">
     <div class="mobile-drawer-header">
       <div class="brand-group">
-        <span class="parent-brand">Macedonia Group</span>
-        <div style="font-family: var(--font-serif); font-size: 1.4rem; font-weight: 700; color: #fff;">
-          MACEDONIA <span style="color: var(--gold-primary);">REALTY</span>
+        <img src="assets/logo-transparent.png" alt="Macedonia Realty Emblem" style="height: 40px; width: auto; object-fit: contain;">
+        <div class="brand-text-col">
+          <span class="parent-brand">Macedonia Group</span>
+          <div style="font-family: var(--font-serif); font-size: 1.3rem; font-weight: 700; color: #fff;">
+            MACEDONIA <span style="color: var(--brand-gold);">REALTY</span>
+          </div>
         </div>
       </div>
       <button class="modal-close-btn" style="position: static;" onclick="toggleMobileDrawer(false)">✕</button>
     </div>
 
     <div style="padding: 10px 0;">
-      <span style="font-size: 0.72rem; text-transform: uppercase; color: var(--gold-primary); letter-spacing: 0.1em; display: block; margin-bottom: 8px;">Select Currency</span>
+      <span style="font-size: 0.72rem; text-transform: uppercase; color: var(--brand-gold); letter-spacing: 0.1em; display: block; margin-bottom: 8px;">Select Currency</span>
       <div class="currency-pill-box" style="display: flex;">
         <button class="curr-btn active mobile-curr-ngn" onclick="setCurrency('NGN')">₦ NGN</button>
         <button class="curr-btn mobile-curr-usd" onclick="setCurrency('USD')">$ USD</button>
@@ -1052,11 +1104,14 @@
     </div>
   </aside>
 
-  <!-- STICKY HEADER -->
+  <!-- STICKY HEADER WITH LOGO -->
   <header>
     <a href="#" class="brand-group">
-      <span class="parent-brand">Macedonia Group</span>
-      <h1 class="realty-brand">MACEDONIA <span>REALTY</span></h1>
+      <img src="assets/logo-transparent.png" alt="Macedonia Realty Official Crest" class="brand-logo-img">
+      <div class="brand-text-col">
+        <span class="parent-brand">Macedonia Group</span>
+        <h1 class="realty-brand">MACEDONIA <span>REALTY</span></h1>
+      </div>
     </a>
 
     <nav class="main-nav">
@@ -1173,7 +1228,7 @@
         <h3 class="section-title">Handcrafted Luxury Stays</h3>
       </div>
       <div style="color: var(--text-muted); font-size: 0.9rem;">
-        Showing <span id="residenceCount" style="color: var(--gold-light); font-weight: 700;">6</span> Vetted Residences
+        Showing <span id="residenceCount" style="color: var(--brand-gold-light); font-weight: 700;">6</span> Vetted Residences
       </div>
     </div>
 
@@ -1244,7 +1299,7 @@
           <div>
             <span class="badge-pill" id="modalBadge">Serviced Penthouse</span>
             <h3 class="modal-res-title" id="modalTitle">The Bourdillon Waterfront Penthouse</h3>
-            <p style="color: var(--gold-light); font-size: 0.9rem;" id="modalLoc">Ikoyi, Lagos</p>
+            <p style="color: var(--brand-gold-light); font-size: 0.9rem;" id="modalLoc">Ikoyi, Lagos</p>
           </div>
           <div style="text-align: right;">
             <div class="price-label">Serviced Nightly Rate</div>
@@ -1273,7 +1328,7 @@
             <div class="calc-row">
               <span>Stay Duration:</span>
               <div style="display: flex; align-items: center; gap: 8px;">
-                <input type="number" id="stayNightsInput" min="1" max="90" value="5" onchange="calculateModalTotal()" style="width: 55px; background: #0b0d10; border: 1px solid var(--border-subtle); color: #fff; text-align: center; border-radius: 4px; padding: 4px;">
+                <input type="number" id="stayNightsInput" min="1" max="90" value="5" onchange="calculateModalTotal()" style="width: 55px; background: #070A08; border: 1px solid var(--border-subtle); color: #fff; text-align: center; border-radius: 4px; padding: 4px;">
                 <span style="color: #fff;">Nights</span>
               </div>
             </div>
@@ -1285,7 +1340,7 @@
 
             <!-- BESPOKE ADD-ONS -->
             <div style="margin: 16px 0; border-top: 1px solid rgba(255,255,255,0.08); padding-top: 14px;">
-              <span style="font-size: 0.72rem; text-transform: uppercase; color: var(--gold-primary); display: block; margin-bottom: 10px;">Select Bespoke Add-ons</span>
+              <span style="font-size: 0.72rem; text-transform: uppercase; color: var(--brand-gold); display: block; margin-bottom: 10px;">Select Bespoke Add-ons</span>
               
               <div style="display: flex; flex-direction: column; gap: 8px;">
                 <label class="addon-check-label">
@@ -1325,28 +1380,28 @@
         Complete Reservation Hold
       </h3>
       <p style="color: var(--text-muted); font-size: 0.85rem; margin-bottom: 20px;" id="holdFormSubtext">
-        Reserving: <strong style="color: var(--gold-light);" id="holdFormPropName">The Bourdillon Waterfront Suite</strong>
+        Reserving: <strong style="color: var(--brand-gold-light);" id="holdFormPropName">The Bourdillon Waterfront Suite</strong>
       </p>
 
       <form onsubmit="handleReservationSubmit(event)" style="display: flex; flex-direction: column; gap: 14px;">
         <div>
-          <label style="font-size: 0.72rem; text-transform: uppercase; color: var(--gold-primary);">Principal Guest Full Name & Title</label>
-          <input type="text" id="holdGuestName" required placeholder="e.g. Chief / Dr. Babatunde Vance" style="width: 100%; padding: 11px; background: #1a202c; border: 1px solid var(--border-subtle); color: #fff; border-radius: var(--radius-sm); outline: none; margin-top: 4px;">
+          <label style="font-size: 0.72rem; text-transform: uppercase; color: var(--brand-gold);">Principal Guest Full Name & Title</label>
+          <input type="text" id="holdGuestName" required placeholder="e.g. Chief / Dr. Babatunde Vance" style="width: 100%; padding: 11px; background: #151E1A; border: 1px solid var(--border-subtle); color: #fff; border-radius: var(--radius-sm); outline: none; margin-top: 4px;">
         </div>
 
         <div>
-          <label style="font-size: 0.72rem; text-transform: uppercase; color: var(--gold-primary);">Direct WhatsApp / Mobile Number</label>
-          <input type="tel" id="holdGuestPhone" required placeholder="+234 ... / +44 ..." style="width: 100%; padding: 11px; background: #1a202c; border: 1px solid var(--border-subtle); color: #fff; border-radius: var(--radius-sm); outline: none; margin-top: 4px;">
+          <label style="font-size: 0.72rem; text-transform: uppercase; color: var(--brand-gold);">Direct WhatsApp / Mobile Number</label>
+          <input type="tel" id="holdGuestPhone" required placeholder="+234 ... / +44 ..." style="width: 100%; padding: 11px; background: #151E1A; border: 1px solid var(--border-subtle); color: #fff; border-radius: var(--radius-sm); outline: none; margin-top: 4px;">
         </div>
 
         <div>
-          <label style="font-size: 0.72rem; text-transform: uppercase; color: var(--gold-primary);">Official Email Address</label>
-          <input type="email" id="holdGuestEmail" required placeholder="principal@domain.com" style="width: 100%; padding: 11px; background: #1a202c; border: 1px solid var(--border-subtle); color: #fff; border-radius: var(--radius-sm); outline: none; margin-top: 4px;">
+          <label style="font-size: 0.72rem; text-transform: uppercase; color: var(--brand-gold);">Official Email Address</label>
+          <input type="email" id="holdGuestEmail" required placeholder="principal@domain.com" style="width: 100%; padding: 11px; background: #151E1A; border: 1px solid var(--border-subtle); color: #fff; border-radius: var(--radius-sm); outline: none; margin-top: 4px;">
         </div>
 
         <div>
-          <label style="font-size: 0.72rem; text-transform: uppercase; color: var(--gold-primary);">Special Security / Dietary Protocols</label>
-          <textarea rows="2" placeholder="e.g. Armored SUV required at MMIA airport; Halal dietary requirements." style="width: 100%; padding: 10px; background: #1a202c; border: 1px solid var(--border-subtle); color: #fff; border-radius: var(--radius-sm); outline: none; margin-top: 4px; font-family: var(--font-sans);"></textarea>
+          <label style="font-size: 0.72rem; text-transform: uppercase; color: var(--brand-gold);">Special Security / Dietary Protocols</label>
+          <textarea rows="2" placeholder="e.g. Armored SUV required at MMIA airport; Halal dietary requirements." style="width: 100%; padding: 10px; background: #151E1A; border: 1px solid var(--border-subtle); color: #fff; border-radius: var(--radius-sm); outline: none; margin-top: 4px; font-family: var(--font-sans);"></textarea>
         </div>
 
         <button type="submit" class="btn-gold" style="padding: 14px; margin-top: 8px;">
@@ -1380,7 +1435,7 @@
           </div>
           <div style="display: flex; justify-content: space-between;">
             <span>Estimated Value:</span>
-            <strong style="color: var(--gold-light);" id="voucherPrice">₦4,250,000</strong>
+            <strong style="color: var(--brand-gold-light);" id="voucherPrice">₦4,250,000</strong>
           </div>
         </div>
 
@@ -1410,18 +1465,18 @@
 
       <form onsubmit="handleContactSubmit(event)" style="display: flex; flex-direction: column; gap: 16px;">
         <div>
-          <label style="font-size: 0.75rem; text-transform: uppercase; color: var(--gold-primary);">Full Name & Title</label>
-          <input type="text" id="contactFullName" required placeholder="e.g. Dr. Alistair Sterling" style="width: 100%; padding: 12px; background: #1a202c; border: 1px solid var(--border-subtle); color: #fff; border-radius: var(--radius-sm); outline: none; margin-top: 4px;">
+          <label style="font-size: 0.75rem; text-transform: uppercase; color: var(--brand-gold);">Full Name & Title</label>
+          <input type="text" id="contactFullName" required placeholder="e.g. Dr. Alistair Sterling" style="width: 100%; padding: 12px; background: #151E1A; border: 1px solid var(--border-subtle); color: #fff; border-radius: var(--radius-sm); outline: none; margin-top: 4px;">
         </div>
 
         <div>
-          <label style="font-size: 0.75rem; text-transform: uppercase; color: var(--gold-primary);">Contact Number / WhatsApp</label>
-          <input type="tel" id="contactPhone" required placeholder="+234 ... / +44 ..." style="width: 100%; padding: 12px; background: #1a202c; border: 1px solid var(--border-subtle); color: #fff; border-radius: var(--radius-sm); outline: none; margin-top: 4px;">
+          <label style="font-size: 0.75rem; text-transform: uppercase; color: var(--brand-gold);">Contact Number / WhatsApp</label>
+          <input type="tel" id="contactPhone" required placeholder="+234 ... / +44 ..." style="width: 100%; padding: 12px; background: #151E1A; border: 1px solid var(--border-subtle); color: #fff; border-radius: var(--radius-sm); outline: none; margin-top: 4px;">
         </div>
 
         <div>
-          <label style="font-size: 0.75rem; text-transform: uppercase; color: var(--gold-primary);">Preferred Destination & Residence</label>
-          <select id="contactDestinationSelect" style="width: 100%; padding: 12px; background: #1a202c; border: 1px solid var(--border-subtle); color: #fff; border-radius: var(--radius-sm); outline: none; margin-top: 4px;">
+          <label style="font-size: 0.75rem; text-transform: uppercase; color: var(--brand-gold);">Preferred Destination & Residence</label>
+          <select id="contactDestinationSelect" style="width: 100%; padding: 12px; background: #151E1A; border: 1px solid var(--border-subtle); color: #fff; border-radius: var(--radius-sm); outline: none; margin-top: 4px;">
             <option>Ikoyi / Banana Island Waterfront Suites</option>
             <option>Victoria Island / Eko Atlantic Loft</option>
             <option>Ikeja GRA Mainland Sanctuary (Near MMIA)</option>
@@ -1451,10 +1506,11 @@
     </div>
   </div>
 
-  <!-- FOOTER -->
+  <!-- FOOTER WITH BRAND LOGO -->
   <footer id="group">
     <div class="footer-grid">
       <div>
+        <img src="assets/logo-transparent.png" alt="Macedonia Realty Brand Crest" class="footer-logo-img">
         <span class="parent-brand">A Conglomerate Enterprise</span>
         <h4 style="font-family: var(--font-serif); font-size: 1.6rem; color: #fff; margin: 4px 0 10px;">MACEDONIA GROUP</h4>
         <p class="footer-brand-bio">
@@ -1839,7 +1895,7 @@
       updateModalPricing(prop);
 
       const amenList = document.getElementById('modalAmenities');
-      amenList.innerHTML = prop.amenities.map(a => `<span class="feature-tag" style="background: rgba(212,175,55,0.1); border-color: rgba(212,175,55,0.25); color: #fff;">✓ ${a}</span>`).join('');
+      amenList.innerHTML = prop.amenities.map(a => `<span class="feature-tag" style="background: rgba(15,69,54,0.3); border-color: rgba(218,155,73,0.3); color: #fff;">✓ ${a}</span>`).join('');
 
       // Reset add-on checkboxes
       document.getElementById('addonChef').checked = false;
